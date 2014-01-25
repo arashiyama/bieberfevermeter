@@ -1,0 +1,118 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background-color: #111111;
+}
+body {
+    padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+}
+.container > footer p {
+    text-align: center; /* center align it with the container */
+    color: #ff9a00
+}
+.container > .content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+/* Page header tweaks */
+.page-header {
+    background-color: #f5f5f5;
+    padding: 20px 20px 10px;
+    margin: -20px -20px 20px;
+}
+.topbar .btn {
+    border: 0;
+}
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+.nav li {
+    padding-top: 5px;
+}
+.leaderboard {
+    padding: 60px;
+    margin-bottom: 30px;
+    background-image: url('/img/gridbg.gif');
+    background-repeat:repeat;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+.leaderboard h1 {
+    font-size: 40px;
+    margin-bottom: 5px;
+    line-height: 1;
+    letter-spacing: -1px;
+    color:#FF6600;
+}
+.leaderboard p {
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 27px;
+}
+.row-fluid h2 {
+    text-align: center;
+    color: #ffffff;
+}
+
+.radial-gauge-header .radial-gauge
+{
+    float: left;
+    height: 214px;
+    margin-bottom: 1em;
+    width: 201px;
+    margin-left: 2em;
+}
+.radial-gauge-header span
+{
+    font-size: 4em;
+    font-weight: bold;
+    line-height: 0.75em;
+    text-shadow: 2px 2px 5px #000;
+}
+.radial-gauge-header .radial-gauge
+{
+    background: transparent url(/img/big_gauge_bg.png) no-repeat center center;
+}
+.radial-gauge-container
+{
+    float: left;
+    width: 50%;
+    position: relative;
+    text-align: center;
+}
+
+.radial-gauge-container .radial-gauge
+{
+    /*width: 146px;*/
+    margin: -39px auto 0 auto;
+    background: transparent url(/img/gauge_bg.png) no-repeat center center;
+}
+.radial-gauge-container .radial-gauge svg
+{
+    /*margin-left: -21px;     margin-top: -2px;*/
+}
+.gauge-data
+{
+    text-shadow: 1px 1px 2px #000;
+    display: inline-block;
+    margin-left: 0.4em;
+    font-weight: bold;
+}
+.gauge-name
+{
+    display: inline-block;
+}

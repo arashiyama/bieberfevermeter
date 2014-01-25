@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- RESPONSIVE SCAFFOLDING -->
+    <title>{{ title }}</title>
+    <meta name="description" content="The official Bieber Fever Meter - Viralto doing data analytics">
+    <meta name="author" content="Viralto">
+
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- not sure if the above is absolutely necessary now however leave it in for the moment. Get a better browser, kid -->
+
+    <!--jQuery References-->
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
+
+    <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="css/custom-theme/jquery.ui.1.8.16.ie.css"/>
+    <![endif]-->
+    <!-- not sure if the above is absolutely necessary now however leave it in for the moment. Get a better browser, kid -->
+
+    <!--Wijmo Widgets CSS-->
+    <link href="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.3.1.min.css" rel="stylesheet" type="text/css">
+    <!--Theme-->
+    <link href="http://cdn.wijmo.com/themes/rocket/jquery-wijmo.css" rel="stylesheet" type="text/css" title="rocket-jqueryui">
+
+    <!--Wijmo Widgets JavaScript-->
+    <script src="http://cdn.wijmo.com/jquery.wijmo-open.all.2.3.1.min.js" type="text/javascript"></script>
+    <script src="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.3.1.min.js" type="text/javascript"></script>
+
+    <!--Culture (we has it)-->
+    <script src="http://cdn.wijmo.com/external/cultures/globalize.culture.en-GB.js" type="text/javascript"></script>
+
+    <!--Knockout JS Library-->
+    <script src="http://cdn.wijmo.com/external/knockout-2.0.0.js" type="text/javascript"></script>
+
+    <!--Wijmo Knockout Integration Library-->
+    <script src="http://cdn.wijmo.com/external/knockout.wijmo.js" type="text/javascript"></script>
+
+    <!-- Knockout mapping plugin -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.3.3/knockout.mapping.js" type="text/javascript"></script>
+
+    <!-- BFM specific defaults -->
+    <script src="js/bfm-gauge.js" type="text/javascript"></script>
+    <!-- One more go at Boostrap! -->
+    <link href="external/bootstrap/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="external/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+
+    <!-- Local Styles -->
+    <link href="css/bfm.css" rel="stylesheet" type="text/css"> <!-- put inline css into its own file -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function ViewModel() {
+                // Data
+                var self=this;
+                self.myVal = ko.observable();
+                self.myMin = ko.observable();
+                self.myMax= ko.observable();
+
+                $.getJSON('{{ json_source_url }}',function(mydata){
+                    self.myVal(mydata.jsonVal);
+                    self.myMin(mydata.jsonMin);
+                    self.myMax(mydata.jsonMax);
+                })
+            }
+
+            ko.applyBindings(new ViewModel());
+
+            $(window).resize(function () {
+               $(":wijmo-wijradialguage").wijradialgauge("redraw");
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="{{ BFM_website }}">{{ BFM_website_tag }}</a>
+            <ul class="nav secondary-nav pull-right">
+                <li><a href="https://twitter.com/share" class="twitter-share-button" data-via="bieberfevermtr">Tweet</a></li>
+                <li><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+                <li><a href="https://twitter.com/bieberfevermtr" class="twitter-follow-button" data-show-count="false">Follow @bieberfevermtr</a></li>
+                <li><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+                <!-- TODO: put the follow applet in here too -->
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="leaderboard">
+        <h1>{{ funny_hero_text }} <small>{{ funny_sub_text }}</small></h1>
+    </div>
+    <div class="row-fluid">
+        <div class="span24">
+            <div class="radial-gauge-container">
+                <h2>{{ Now_Im_a_Belieber }}</h2>
+               <div class="radial-gauge" data-bind="wijradialgauge: { value: myVal, min: myMin, max: myMax }"></div>
+            </div>
+        </div>
+        <!-- Drop the twitter app - it does not behave well in a responsive environment
+        <div class="span6">
+            <div style="text-align: center">
+                <h2>Live Bieber twitter feed</h2>
+                <a class="twitter-timeline"  href="https://twitter.com/search?q=bieber" data-widget-id="273459917069877248">Tweets about "bieber"</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </div>
+        </div>
+        -->
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h2>{{ credits }}</h2>
+    </div>
+</div>
+</body>
+</html>

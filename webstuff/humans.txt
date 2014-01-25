@@ -1,0 +1,16 @@
+/* TEAM */
+    Code Monkey: Jonathan
+    Twitter: @arashiyama
+    From: Reading, United Kingdom
+
+    Science Officer: Tim
+    Twitter: @woodpunk
+    From: Oxford, United Kingdom
+
+/* THANKS */
+
+/* SITE */
+    Last update: $date$
+    Language: English
+    Doctype: HTML5
+    IDE: Pycharm
